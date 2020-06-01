@@ -1,0 +1,53 @@
+{
+  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/favicon.ico",
+          "/index.html",
+          "/manifest.webmanifest",
+          "/*.css",
+          "/*.js"
+        ]
+      }
+    }, {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/**",
+          "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [{
+    "name": "api-freshness",
+    "urls": [
+      "https://api.flickr.com/services/rest?method=flickr.photos.search&api_key=ef1f9d4f8ca80dada31c684364355282&FLickrApi_sig=d7f57fa9e01a6a2d6ccd8597b8d2f86b&nojsoncallback=1&format=json&per_page=500&tags=hi&content_type=7&extras=owner_name,date_upload"
+    ],
+    "cacheConfig": {
+      "strategy": "freshness",
+      "maxSize": 20,
+      "maxAge": "3d",
+      "timeout": "10s"
+    }
+  },
+  {
+    "name": "api-performance",
+    "urls": [
+      "https://api.flickr.com/services"
+    ],
+    "cacheConfig": {
+      "strategy": "performance",
+      "maxSize": 20,
+      "maxAge": "3d"
+    }
+  }
+]
+}
