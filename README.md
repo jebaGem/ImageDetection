@@ -8,7 +8,7 @@ When you click on one of the images, it calculates the edges of the images using
 Responsive app design
 ## How Did I solve?
 It lists the search results of flickr api - 
-***Called the API to load all the mamimum number of result. Added service worker to cache the data***
+***Called the API to load all the mamimum number of result. Added service worker to cache the data***<br/>
 It supports incremental loading when the user scroll the page 
  ***Used angular cdk-virtual-scroll-viewport to load the data on load***
 When you click on one of the images, it calculates the edges of the images using opencvjs “Canny edge detection” and open it on full screen mode 
