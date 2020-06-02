@@ -24,7 +24,7 @@ Then  navigate in terminal ***cd dist/flicker-app***
 Then run ***http-server -p 9090***
 Try being in offline check the data, the data will be already loaded
 ## Development server
-
+Run run npm install
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
