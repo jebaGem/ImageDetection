@@ -17,15 +17,16 @@ When you click on one of the images, it calculates the edges of the images using
 Responsive app design 
 ***Loaded the data on scroll and when u click the items , the image from the service will be called , and displayed on the screen***
 
+## Development server
+Run `npm install`
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
 ## How to check service worker in application
 Service worker will not run in localhost
 To solve First build application in to prod ***ng serve --prod***<br/>
 Then  navigate in terminal ***cd dist/flicker-app***
 Then run ***http-server -p 9090***
 Try being in offline check the data, the data will be already loaded
-## Development server
-Run run npm install
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
