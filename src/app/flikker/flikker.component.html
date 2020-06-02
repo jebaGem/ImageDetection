@@ -1,22 +1,31 @@
 <h1 class="heading"><strong>Fetching Data </strong></h1>
 
+<!--Inital Loading-->
 <div *ngIf="loading">loading...</div>
 
+<!--Error message-->
 <div *ngIf="errorMessage" class="alert alert-warning">
   <strong>Error</strong>
 </div>
 
 
-<img [src]="imageBlobUrl" style="position: absolute;width: 100%;">
+<!--Overlay to show image-->
 
+<div id="myNav" class="overlay" [hidden]="!showOverlay">
+  <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+  <div class="overlay-content">
+    <img [src]="imageBlobUrl" style="position: absolute;width: 100%;left:0">
+  </div>
+</div>
 
+  <!--Lazy Loading-->
 <ng-container *ngIf="photos">
-<cdk-virtual-scroll-viewport [itemSize]="1" style="height: 1000px">
+<cdk-virtual-scroll-viewport [itemSize]="100" style="height: 100%;background-position: center;background-repeat: no-repeat;background-size: cover;">
   <div>
     <ul  class="card">
-      <li  class="container"*cdkVirtualFor="let person of photos.photo;let i = index" (click)="getValue(person.id,person.secret)" >
-          <h4><b>{{person.title}}</b></h4>
-          <h4><b>{{person.orbed}}</b></h4>
+      <li  class="container"*cdkVirtualFor="let person of photos.photo;let i = index" (click)="getValue(person.id,person.secret);openNav()" >
+          <h4><b>Title : {{person.title}}</b></h4>
+          <h4><b>Owner name : {{person.owner}}</b></h4>
       </li>
     </ul>
   </div>
