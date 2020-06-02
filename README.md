@@ -10,12 +10,19 @@ Responsive app design
 It lists the search results of flickr api - 
 ***Called the API to load all the mamimum number of result. Added service worker to cache the data***<br/>
 It supports incremental loading when the user scroll the page 
- ***Used angular cdk-virtual-scroll-viewport to load the data on load***
+ ***Used angular cdk-virtual-scroll-viewport to load the data on load***<br/>
+ 
 When you click on one of the images, it calculates the edges of the images using opencvjs “Canny edge detection” and open it on full screen mode 
-***Tried with the opencv, but i couldnt able to load the dynamic image from url***
+***Tried with the opencv, but i couldnt able to load the dynamic image from url***<br/>
 Responsive app design 
 ***Loaded the data on scroll and when u click the items , the image from the service will be called , and displayed on the screen***
 
+## How to check service worker in application
+Service worker will not run in localhost
+To solve First build application in to prod ***ng serve --prod***<br/>
+Then  navigate in terminal ***cd dist/flicker-app***
+Then run ***http-server -p 9090***
+Try being in offline check the data, the data will be already loaded
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
