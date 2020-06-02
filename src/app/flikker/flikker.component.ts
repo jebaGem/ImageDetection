@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FlikkerService } from 'src/service/flikker.service';
 import { RootPhotos, Photos, Photo } from 'src/types/types';
 import cannyEdgeDetector from 'canny-edge-detector';
 import Image from 'image-js';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NgOpenCVService, OpenCVLoadResult } from 'ng-open-cv';
+import { Observable, fromEvent } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-flikker',
   templateUrl: './flikker.component.html',
@@ -16,18 +19,24 @@ export class FlikkerComponent implements OnInit {
   errorMessage;
   thumbnail: any;
   showOverlay : boolean;
-
-  /**
+// Keep tracks of the ready
+openCVLoadResult: Observable<OpenCVLoadResult>;
+@ViewChild('canvas_box')
+canvasOutput: ElementRef;
+/**
    * @param  {FlikkerService} privatephotosService
    * @param  {DomSanitizer} privatesanitizer
    */
-  constructor(private photosService:  FlikkerService,private sanitizer: DomSanitizer) { }
+  constructor(private photosService:  FlikkerService,
+    private ngOpenCVService: NgOpenCVService,
+    private sanitizer: DomSanitizer) { }
 
   /**
    * on init call the photos service
    */
   ngOnInit(): void {
     this.getphotos();
+    this.openCVLoadResult = this.ngOpenCVService.isReady$;
   }
 
   /**
@@ -38,7 +47,9 @@ export class FlikkerComponent implements OnInit {
     let reader = new FileReader();
     reader.addEventListener("load", () => {
       this.imageBlobUrl = reader.result;
-
+// commenting this becos not working
+// tried with swoitch map also
+      //this.ngOpenCVService.loadImageToHTMLCanvas(`${reader.result}`, this.canvasOutput.nativeElement);
     }, false);
   if (image) {
       reader.readAsDataURL(image);
@@ -55,6 +66,7 @@ export class FlikkerComponent implements OnInit {
     //   const edge = cannyEdgeDetector(grey);
     //   return edge.save('edge.png');
     // })
+
   }
 
   /**

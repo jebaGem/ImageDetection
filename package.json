@@ -25,6 +25,7 @@
     "canny-edge-detector": "^1.0.0",
     "image-js": "^0.21.9",
     "ng-open-cv": "^0.3.1",
+    "opencv.js": "^1.2.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
